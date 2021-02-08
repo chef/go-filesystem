@@ -1,2 +1,3 @@
 # go-filesystem
-Wrapper around aferoFS that includes some custom helpers
+
+A wrapper around a selection of filesystem libraries to facilitate easy mocking.
