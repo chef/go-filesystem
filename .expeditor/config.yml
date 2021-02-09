@@ -1,0 +1,21 @@
+# Documentation available at https://expeditor.chef.io/docs/getting-started/
+---
+# The name we use for this project when interacting with Expeditor Slack App
+project:
+  alias: go-filesystem
+
+# Slack channel in Chef Software slack to send notifications about build failures, etc
+slack:
+  notify_channel: releng-notify
+
+github:
+  # This deletes the GitHub PR branch after successfully merged into the release branch
+  delete_branch_on_merge: true
+
+subscriptions:
+  - workload: pull_request_merged:{{github_repo}}:{{release_branch}}:*
+    actions:
+      - built_in:bump_version:
+          ignore_labels:
+            - "Expeditor: Skip All"
+            - "Expeditor: Skip Version Bump"
